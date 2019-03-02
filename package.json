@@ -15,12 +15,12 @@
   "author": "Zach Carter",
   "license": "APL 2.0",
   "dependencies": {
-    "jwcrypto": "0.4.4",
-    "request": "2.27.0",
-    "p-promise": "0.2.5",
-    "fxa-js-client": "0.1.x",
-    "hkdf": "0.0.1",
-    "xmlhttprequest": "git://github.com/zaach/node-XMLHttpRequest.git#onerror",
-    "hawk": "~1.1.2"
+    "browserid-crypto": "^0.9.1",
+    "fxa-js-client": "1.0.x",
+    "hawk": "~7.0.10",
+    "hkdf": "0.0.2",
+    "p-promise": "0.5.0",
+    "request": "2.88.0",
+    "xmlhttprequest": "git://github.com/zaach/node-XMLHttpRequest.git#onerror"
   }
 }
