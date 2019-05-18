@@ -31,4 +31,5 @@ sync.fetch('tabs')
   console.log('bookmarks too: ', results);
   assert.ok(results);
 })
-.done();
+.catch(console.error.bind(console))
+//.done();
