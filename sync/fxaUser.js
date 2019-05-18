@@ -35,7 +35,7 @@ FxUser.prototype.auth = function() {
   return this.client.signIn(
       this.email,
       this.password,
-      { keys: true }
+      { keys: true, verificationMethod: "email" }
     )
     .then(function (creds) {
       self.creds = creds;
