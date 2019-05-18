@@ -28,7 +28,7 @@ function decryptWBO(keyBundle, wbo) {
     throw new Error('Incorrect HMAC. Got ' + computedHMAC + '. Expected ' + payload.hmac + '.');
   }
 
-  var iv = Buffer(payload.IV, 'base64').slice(0, 16);
+  var iv = Buffer.from(payload.IV, 'base64').slice(0, 16);
   var decipher = crypto.createDecipheriv('aes-256-cbc', keyBundle.encKey, iv)
   var plaintext = decipher.update(payload.ciphertext, 'base64', 'utf8')
   plaintext += decipher.final('utf8');
@@ -57,8 +57,8 @@ function decryptCollectionKeys(keyBundle, wbo) {
   var decrypted = decryptWBO(keyBundle, wbo);
   return {
     default: {
-      encKey: Buffer(decrypted.default[0], 'base64'),
-      hmacKey: Buffer(decrypted.default[1], 'base64')
+      encKey: Buffer.from(decrypted.default[0], 'base64'),
+      hmacKey: Buffer.from(decrypted.default[1], 'base64')
     }
   };
 }

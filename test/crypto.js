@@ -33,12 +33,12 @@ function decrypt(ciphertext, key, iv) {
 
 
 // test basic crypto
-key = Buffer("0123456789abcdef0123456789abcdef", "utf8");
-iv = Buffer("0123456789abcdef", "utf8");
+key = Buffer.from("0123456789abcdef0123456789abcdef", "utf8");
+iv = Buffer.from("0123456789abcdef", "utf8");
 payload = "ThisStringIsExactlyThirtyTwoByte";
 assert.equal(payload, decrypt(encrypt(payload, key, iv), key, iv));
 
-expectedCiphertext = Buffer("26fc3a9c95765336123dedcbebcc0c3f652cc4473c6c6f0dfe27c1d4cf04c3ae32bea9f6e1940a15f446f4cbf516141f", "hex");
+expectedCiphertext = Buffer.from("26fc3a9c95765336123dedcbebcc0c3f652cc4473c6c6f0dfe27c1d4cf04c3ae32bea9f6e1940a15f446f4cbf516141f", "hex");
 
 assert.equal(expectedCiphertext.length, 48);
 assert.equal(encrypt("ThisStringIsExactlyThirtyTwoByte", key, iv), "Jvw6nJV2UzYSPe3L68wMP2UsxEc8bG8N/ifB1M8Ew64yvqn24ZQKFfRG9Mv1FhQf");
@@ -46,11 +46,11 @@ assert.equal(encrypt("ThisStringIsExactlyThirtyTwoByte", key, iv), "Jvw6nJV2UzYS
 
 // test key derivation
 var keyBundle = {
-   encKey: Buffer("M2WxH2kvEDlRW3kgPV9KMbI047UPzdVj9X2WSNcaqME=", "base64"),
-   hmacKey: Buffer("Cxbz9pbZ6RMkyeUXu9Uo4ZTebzp34yjY38/Z14ORSaM=", "base64")
+   encKey: Buffer.from("M2WxH2kvEDlRW3kgPV9KMbI047UPzdVj9X2WSNcaqME=", "base64"),
+   hmacKey: Buffer.from("Cxbz9pbZ6RMkyeUXu9Uo4ZTebzp34yjY38/Z14ORSaM=", "base64")
 };
 
-var derivedKeys = Crypto.deriveKeys(Buffer("a5653a34302125fd0a72619dbcc2cfada1b51d597c9d47995ed127daffcbf6a3", "hex"))
+var derivedKeys = Crypto.deriveKeys(Buffer.from("a5653a34302125fd0a72619dbcc2cfada1b51d597c9d47995ed127daffcbf6a3", "hex"))
   .then(function (bundle) {
     assert.equal(bundle.encKey, keyBundle.encKey);
     assert.equal(bundle.hmackey, keyBundle.hmackey);
@@ -69,4 +69,4 @@ assert.ok(result.default);
 var kb = '6b813696a1f83a87e41506b7f33b991b985f3d6e0c934f867544e711882c179c';
 var state = '630b070cdd4369880a82762436c5399d';
 
-assert.equal(Crypto.computeClientState(Buffer(kb, 'hex')), state);
+assert.equal(Crypto.computeClientState(Buffer.from(kb, 'hex')), state);

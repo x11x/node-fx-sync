@@ -77,7 +77,7 @@ FxUser.prototype.setup = function() {
     .then(
       function (creds) {
         // set the sync key
-        self.syncKey = Buffer(creds.kB, 'hex');
+        self.syncKey = Buffer.from(creds.kB, 'hex');
         var deferred = P.defer();
         // upon allocation of a user, we'll gen a keypair and get a signed cert
         jwcrypto.generateKeypair({ algorithm: "DS", keysize: 256 }, function(err, kp) {
